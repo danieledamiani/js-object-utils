@@ -1,0 +1,24 @@
+{
+  "name": "js-object-utils",
+  "version": "1.0.0",
+  "description": "A JS class for object displaying and manipulation",
+  "main": "Utils.js",
+  "scripts": {
+    "test": "mocha --reporter progress \"Utils.spec.js\" ",
+    "test:watch": "npm run test -- --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/danieledamiani/js-object-utils.git"
+  },
+  "author": "Daniele Damiani",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/danieledamiani/js-object-utils/issues"
+  },
+  "homepage": "https://github.com/danieledamiani/js-object-utils#readme",
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "mocha": "^4.0.1"
+  }
+}
