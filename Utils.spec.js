@@ -7,13 +7,13 @@ describe('Utils', () => {
     expect(true).to.equal(true);
   });
 
+  let utils;
+  
+  beforeEach(() => {
+    utils = new Utils();
+  });
+
   describe('.removeKeysWithFalsyValues()', () => {
-    let utils;
-
-    beforeEach(() => {
-      utils = new Utils();
-    });
-
     it('should return an empty object when an empty object is passed', () => {
       const dataObj = {};
       const result = utils.removeKeysWithFalsyValues(dataObj);
@@ -74,6 +74,14 @@ describe('Utils', () => {
       };
       const result = utils.removeKeysWithFalsyValues(dataObj);
       expect(result).to.eql(expected);
+    });
+  });
+
+  describe('.print()', () => {
+    it('should return a string that represent a serialization of the argument', () => {
+      const dataObj = {};
+      const result = utils.print(dataObj);
+      expect(result).to.equal('{}');
     });
   });
 });

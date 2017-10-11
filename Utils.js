@@ -42,6 +42,24 @@ class Utils {
     }
     return cleanData;
   }
+
+  print(data) {
+      return typeof data === 'object' ? this.printObject(data) :  this.printValue(data);
+  }
+
+  printObject(object) {
+    return '{}';
+  }
+  
+  printValue(value) {
+   return ` ${value} `;
+  }
+  
+   getTypeName(object) {
+     var funcNameRegex = /function (.{1,})\(/;
+     var results = (funcNameRegex).exec(object.constructor.toString());
+     return (results && results.length > 1) ? results[1] : '';
+  }
 }
 
 module.exports = Utils;
