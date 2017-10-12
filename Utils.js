@@ -44,21 +44,36 @@ class Utils {
   }
 
   print(data) {
-      return typeof data === 'object' ? this.printObject(data) :  this.printValue(data);
-  }
+    const printObject = object => {
+      if (object == null) { return printValue('null', false, false); }
+      
+      let stringifiedObject = printValue(getTypeName(object), false, true);
+      stringifiedObject += printValue('{', false, false);
 
-  printObject(object) {
-    return '{}';
-  }
-  
-  printValue(value) {
-   return ` ${value} `;
-  }
-  
-   getTypeName(object) {
-     var funcNameRegex = /function (.{1,})\(/;
-     var results = (funcNameRegex).exec(object.constructor.toString());
-     return (results && results.length > 1) ? results[1] : '';
+      let isFirstProperty = true;
+
+      Object.keys(object).forEach(property => {
+        stringifiedObject += isFirstProperty ? '' : printValue(',', false, false);
+        isFirstProperty = false;
+        stringifiedObject += printValue(`${property}:`, true, true);
+        stringifiedObject += printValue(`${object[property]}`, false, false);
+      });
+
+      stringifiedObject += printValue('}', true, false);    
+      return stringifiedObject;
+    };
+
+    const printValue = (value, leftPadding, rightPadding) => {
+      return `${leftPadding ? ' ' : ''}${value}${rightPadding ? ' ' : ''}`;
+    };
+
+    const getTypeName = object => {
+      const funcNameRegex = /function (.{1,})\(/;
+      const results = (funcNameRegex).exec(object.constructor.toString());
+      return (results && results.length > 1) ? results[1] : '';
+    };
+
+    return typeof data === 'object' ? printObject(data) :  printValue(data);
   }
 }
 

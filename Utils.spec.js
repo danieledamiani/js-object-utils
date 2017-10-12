@@ -78,10 +78,40 @@ describe('Utils', () => {
   });
 
   describe('.print()', () => {
-    it('should return a string that represent a serialization of the argument', () => {
-      const dataObj = {};
-      const result = utils.print(dataObj);
-      expect(result).to.equal('{}');
+    it('should return the string null for a null object', () => {
+      const data = null;
+      const result = utils.print(data);
+      expect(result).to.equal('null');
+    });
+
+    it('should return the string Object {} for an empty object', () => {
+      const data = {};
+      const result = utils.print(data);
+      expect(result).to.equal('Object { }');
+    });
+    
+    
+    it('should return the string 123 given the number 123', () => {
+      const data = 123;
+      const result = utils.print(data);
+      expect(result).to.equal('123');
+    });
+    
+    it('should return the string Object { a: 123 } given an object with property a and value 123', () => {
+      const data = {
+        a: 123
+      };
+      const result = utils.print(data);
+      expect(result).to.equal('Object { a: 123 }');
+    });
+    
+    it('should return the string Object { a: 123, b: true } given an object with property a and value 123', () => {
+      const data = {
+        a: 123,
+        b: true
+      };
+      const result = utils.print(data);
+      expect(result).to.equal('Object { a: 123, b: true }');
     });
   });
 });
