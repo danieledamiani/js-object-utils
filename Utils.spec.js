@@ -75,6 +75,34 @@ describe('Utils', () => {
       const result = utils.removeKeysWithFalsyValues(dataObj);
       expect(result).to.eql(expected);
     });
+    
+    it('should return an object that contains thruty values and falsy when enabled in options', () => {
+      const dataObj = {
+        prop1: 123,
+        prop2: '',
+        prop3: false,
+        prop4: {},
+        prop5: [],
+        prop6: 0
+      };
+      const options = {
+        emptyString: true,
+        falseBool: true,
+        emptyArray: true,
+        emptyObject: true,
+        zero: true
+      };
+      const expected = {
+        prop1: 123,
+        prop2: '',
+        prop3: false,
+        prop4: {},
+        prop5: [],
+        prop6: 0
+      };
+      const result = utils.removeKeysWithFalsyValues(dataObj, options);
+      expect(result).to.eql(expected);
+    });
   });
 
   describe('.print()', () => {
